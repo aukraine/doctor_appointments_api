@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :appointments
+  resources :appointments, only: [:index, :show, :create, :update, :destroy]
 end
