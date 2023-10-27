@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_182411) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_27_203031) do
   create_table "appointments", force: :cascade do |t|
     t.integer "start_time", null: false
     t.integer "end_time", null: false
@@ -18,4 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_182411) do
     t.datetime "updated_at", null: false
     t.index ["start_time", "end_time"], name: "index_appointments_on_start_time_and_end_time"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string "type", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
