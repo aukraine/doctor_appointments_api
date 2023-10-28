@@ -11,21 +11,21 @@ class DoctorAvailabilitiesController < ApplicationController
     authorize DoctorAvailability
     @resource = DoctorAvailability.create!(doctor: current_user, **availability_params)
 
-    render json: { data: @resource, message: 'record has been successfully created' }, status: :created
+    render json: { data: @resource, message: 'Record has been successfully created' }, status: :created
   end
 
   def update
     authorize @resource
     @resource.update!(**availability_params)
 
-    render json: { data: @resource, message: 'record has been successfully updated' }, status: :ok
+    render json: { data: @resource, message: 'Record has been successfully updated' }, status: :ok
   end
 
   def destroy
     authorize @resource
     @resource.destroy
 
-    render json: { message: 'record has been successfully deleted' }, status: :no_content
+    render json: { message: 'Record has been successfully deleted' }, status: :no_content
   end
 
   private

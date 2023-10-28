@@ -3,6 +3,10 @@ class ApplicationController < ActionController::API
 
   before_action :authenticate, except: :login
 
+  rescue_from StandardError do |exception|
+    handle_exception(exception)
+  end
+
   attr_reader :current_user
 
   def login
@@ -13,7 +17,7 @@ class ApplicationController < ActionController::API
       token = JsonWebToken.encode(user_id: user.id)
       render json: { auth_token: token }, status: :ok
     else
-      render json: { error: 'Invalid credentials' }, status: :unauthorized
+      render_error(Errors::Unauthorized.new('Invalid credentials.'))
     end
   end
 
@@ -26,9 +30,20 @@ class ApplicationController < ActionController::API
     if header.present? && (decoded = JsonWebToken.decode(header))
       @current_user = User.find(decoded[:user_id])
     else
-      render json: { error: 'Unauthorized' }, status: :unauthorized
+      render_error(Errors::Unauthorized.new)
     end
-  rescue StandardError => e
-    render json: { error: e.message }, status: :unauthorized
+  end
+
+  def handle_exception(exception)
+    prepared_error = ErrorHandler.(exception)
+
+    # we can provide more details into logs for better troubleshooting
+    Rails.logger.error("[ERROR] [#{prepared_error}] #{prepared_error.error_detail}")
+
+    render_error(prepared_error, prepared_error.status_code)
+  end
+
+  def render_error(error, status = nil)
+    render json: { error: error.error_detail }, status: status.presence || error.status_code
   end
 end
