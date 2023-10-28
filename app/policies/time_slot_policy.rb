@@ -1,11 +1,11 @@
-class DoctorAvailabilityPolicy < ApplicationPolicy
+class TimeSlotPolicy < ApplicationPolicy
   class Scope
     def initialize(user, scope)
       @user = user
       @scope = scope
     end
 
-    def resolve = user.doctor_availabilities
+    def resolve = user.time_slots
 
     private
 

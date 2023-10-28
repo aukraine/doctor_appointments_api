@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: doctor_availabilities
+# Table name: time_slots
 #
 #  id          :integer          not null, primary key
 #  day_of_week :integer          default("Monday"), not null
@@ -12,13 +12,13 @@
 #
 # Indexes
 #
-#  index_doctor_availabilities_on_doctor_id  (doctor_id)
+#  index_time_slots_on_doctor_id  (doctor_id)
 #
 # Foreign Keys
 #
 #  doctor_id  (doctor_id => users.id)
 #
-class DoctorAvailability < ApplicationRecord
+class TimeSlot < ApplicationRecord
   DAYS_OF_WEEK = {
     MON = 'Monday'.freeze => 0,
     TUE = 'Tuesday'.freeze => 1,

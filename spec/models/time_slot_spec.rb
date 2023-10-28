@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: doctor_availabilities
+# Table name: time_slots
 #
 #  id          :integer          not null, primary key
 #  day_of_week :integer          default("Monday"), not null
@@ -12,7 +12,7 @@
 #
 # Indexes
 #
-#  index_doctor_availabilities_on_doctor_id  (doctor_id)
+#  index_time_slots_on_doctor_id  (doctor_id)
 #
 # Foreign Keys
 #
@@ -20,6 +20,6 @@
 #
 require 'rails_helper'
 
-RSpec.describe DoctorAvailability, type: :model do
+RSpec.describe TimeSlot, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

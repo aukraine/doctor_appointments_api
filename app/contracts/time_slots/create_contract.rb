@@ -1,4 +1,4 @@
-module DoctorAvailabilities
+module TimeSlots
   class CreateContract < BaseContract
     params do
       required(:day_of_week).filled(:integer)
