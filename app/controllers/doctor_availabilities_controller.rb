@@ -1,34 +1,35 @@
 class DoctorAvailabilitiesController < ApplicationController
-  def index
-    render json: { data: DoctorAvailability.all }, status: :ok
-  end
+  before_action :set_resource, except: [:index, :create]
 
-  def show
-    render json: { data: DoctorAvailability.find(availability_params[:id]) }, status: :ok
+  def index
+    authorize DoctorAvailability
+
+    render json: { data: policy_scope(DoctorAvailability) }, status: :ok
   end
 
   def create
-    @availability = DoctorAvailability.create!(doctor: @current_user, **availability_params)
+    authorize DoctorAvailability
+    @resource = DoctorAvailability.create!(doctor: current_user, **availability_params)
 
-    render json: { data: @availability }, status: :created
+    render json: { data: @resource, message: 'record has been successfully created' }, status: :created
   end
 
   def update
-    @availability = DoctorAvailability.find(availability_params[:id])
-    @availability.update!(**availability_params)
+    authorize @resource
+    @resource.update!(**availability_params)
 
-    render json: { data: @availability }, status: :ok
+    render json: { data: @resource, message: 'record has been successfully updated' }, status: :ok
   end
 
   def destroy
-    DoctorAvailability.find(availability_params[:id]).destroy
+    authorize @resource
+    @resource.destroy
 
     render json: { message: 'record has been successfully deleted' }, status: :no_content
   end
 
   private
 
-  def availability_params
-    params.permit(:id, :day_of_week, :start_time, :end_time)
-  end
+  def availability_params = params.permit(:id, :day_of_week, :start_time, :end_time)
+  def set_resource = @resource = DoctorAvailability.find(availability_params[:id])
 end

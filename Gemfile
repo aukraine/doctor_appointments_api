@@ -10,6 +10,7 @@ gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'bootsnap', require: false
 gem 'bcrypt'
 gem 'jwt'
+gem 'pundit'
 
 group :development do
   gem 'annotate'

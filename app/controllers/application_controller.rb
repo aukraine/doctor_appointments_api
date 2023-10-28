@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::API
+  include Pundit::Authorization
+
   before_action :authenticate, except: :login
+
+  attr_reader :current_user
 
   def login
     auth_params = params.permit(:email, :password)
