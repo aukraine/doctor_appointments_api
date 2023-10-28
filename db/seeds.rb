@@ -2,15 +2,69 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 Appointment.destroy_all
 User.destroy_all
+TimeSlot.destroy_all
 
 current_time = Time.current.to_i
-delta_time = 1200
+delta_time = 20.minutes.to_i
+one_day = 1.day.to_i
+three_days = one_day * 3
+five_days = one_day * 5
 
 Appointment.create(start_time: current_time, end_time: current_time + delta_time)
 Appointment.create(start_time: current_time + delta_time, end_time: current_time + delta_time * 2)
 
-Doctor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'doctor@mail.com', password: 'password')
-Doctor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'password')
+doctor_1 = Doctor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'doctor@mail.com', password: 'password')
+doctor_2 = Doctor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'password')
+
 Patient.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'password')
 Patient.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'password')
 Patient.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'password')
+
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::MON],
+  doctor: doctor_1,
+  start_time: current_time,
+  end_time: current_time + delta_time
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::WED],
+  doctor: doctor_1,
+  start_time: current_time + three_days,
+  end_time: current_time + three_days + delta_time
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::FRI],
+  doctor: doctor_1,
+  start_time: current_time + five_days,
+  end_time: current_time + five_days + delta_time
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::FRI],
+  doctor: doctor_1,
+  start_time: current_time + five_days + delta_time,
+  end_time: current_time + five_days + delta_time * 2
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::MON],
+  doctor: doctor_2,
+  start_time: current_time,
+  end_time: current_time + delta_time
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::MON],
+  doctor: doctor_2,
+  start_time: current_time,
+  end_time: current_time + delta_time
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::WED],
+  doctor: doctor_2,
+  start_time: current_time + three_days,
+  end_time: current_time + three_days + delta_time
+)
+TimeSlot.create(
+  day_of_week: TimeSlot::DAYS_OF_WEEK[TimeSlot::WED],
+  doctor: doctor_2,
+  start_time: current_time + three_days + delta_time,
+  end_time: current_time + three_days + delta_time * 2
+)

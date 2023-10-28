@@ -12,4 +12,5 @@
 #  updated_at      :datetime         not null
 #
 class Doctor < User
+  has_many :time_slots, dependent: :destroy
 end

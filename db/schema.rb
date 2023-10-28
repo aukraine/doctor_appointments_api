@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_213016) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_27_233408) do
   create_table "appointments", force: :cascade do |t|
     t.integer "start_time", null: false
     t.integer "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["start_time", "end_time"], name: "index_appointments_on_start_time_and_end_time"
+  end
+
+  create_table "time_slots", force: :cascade do |t|
+    t.integer "doctor_id", null: false
+    t.integer "start_time", null: false
+    t.integer "end_time", null: false
+    t.integer "day_of_week", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_time_slots_on_doctor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,4 +39,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_213016) do
     t.string "password_digest"
   end
 
+  add_foreign_key "time_slots", "users", column: "doctor_id"
 end
