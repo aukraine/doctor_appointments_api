@@ -11,6 +11,7 @@ gem 'bootsnap', require: false
 gem 'bcrypt'
 gem 'jwt'
 gem 'pundit'
+gem 'dry-validation'
 
 group :development do
   gem 'annotate'
