@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
     handle_exception(exception)
   end
 
-  attr_reader :current_user, :resource
+  attr_reader :current_user, :resource, :collection
 
   def login
     auth_params = params.permit(:email, :password)

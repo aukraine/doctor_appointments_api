@@ -12,6 +12,8 @@ gem 'bcrypt'
 gem 'jwt'
 gem 'pundit'
 gem 'dry-validation'
+gem 'alba'
+gem 'oj'
 
 group :development do
   gem 'annotate'

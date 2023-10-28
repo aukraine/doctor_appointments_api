@@ -3,24 +3,27 @@ class DoctorAvailabilitiesController < ApplicationController
 
   def index
     authorize DoctorAvailability
+    @collection = policy_scope(DoctorAvailability)
 
-    render json: { data: policy_scope(DoctorAvailability) }, status: :ok
+    render json: AvailabilityResource.new(collection).serialize, status: :ok
   end
 
   def create
     authorize DoctorAvailability
     params = validate(DoctorAvailabilities::CreateContract)
     @resource = DoctorAvailability.create!(doctor: current_user, **params)
+    serialized = AvailabilityResource.new(resource).serialize(meta: { message: 'Record has been successfully created' })
 
-    render json: { data: resource, message: 'Record has been successfully created' }, status: :created
+    render json: serialized, status: :created
   end
 
   def update
     authorize resource
     params = validate(DoctorAvailabilities::UpdateContract)
     resource.update!(**params.to_h)
+    serialized = AvailabilityResource.new(resource).serialize(meta: { message: 'Record has been successfully updated' })
 
-    render json: { data: resource, message: 'Record has been successfully updated' }, status: :ok
+    render json: serialized, status: :ok
   end
 
   def destroy

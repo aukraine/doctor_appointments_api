@@ -66,6 +66,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    alba (3.0.1)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -155,6 +156,7 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
+    oj (3.16.1)
     psych (5.1.1.1)
       stringio
     puma (5.6.7)
@@ -230,6 +232,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  alba
   annotate
   bcrypt
   bootsnap
@@ -238,6 +241,7 @@ DEPENDENCIES
   dry-validation
   faker
   jwt
+  oj
   puma (~> 5.0)
   pundit
   rails (~> 7.0.8)
