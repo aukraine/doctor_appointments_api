@@ -32,4 +32,24 @@ class TimeSlot < ApplicationRecord
   belongs_to :doctor
 
   enum day_of_week: DAYS_OF_WEEK, _default: DAYS_OF_WEEK[MON]
+
+  validate :no_overlapping_time_slots
+
+  private
+
+  def no_overlapping_time_slots
+    overlapped =
+      TimeSlot
+        .where.not(id: id) # Exclude the current record if it's being updated
+        .where(doctor_id: doctor_id)
+        .where(
+          '(start_time < ? AND end_time > ?) OR (start_time < ? AND end_time > ?) OR (start_time >= ? AND end_time <= ?)',
+          end_time, start_time, start_time, end_time, start_time, end_time
+        )
+        .exists?
+      # there is SQL 'OVERLAPS' function but is not supported on SQLite
+      # .where('(start_time, end_time) OVERLAPS (?, ?)', start_time, end_time)
+
+    errors.add(:base, 'Time slots cannot overlap') if overlapped
+  end
 end
