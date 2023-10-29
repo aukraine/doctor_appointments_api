@@ -1,5 +1,5 @@
 module TimeSlots
-  class CreateContract < BaseContract
+  class CreateContract < SaveContract
     params do
       required(:day_of_week).filled(:integer)
       required(:start_time).filled(:integer)

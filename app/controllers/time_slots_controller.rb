@@ -19,7 +19,7 @@ class TimeSlotsController < ApplicationController
 
   def update
     authorize resource
-    params = validate(TimeSlots::UpdateContract)
+    params = validate(TimeSlots::UpdateContract, time_slot: resource)
     resource.update!(**params.to_h)
     serialized = TimeSlotResource.new(resource).serialize(meta: { message: 'Record has been successfully updated' })
 
@@ -37,8 +37,8 @@ class TimeSlotsController < ApplicationController
 
   def set_resource = @resource = TimeSlot.find(params[:id])
 
-  def validate(contract_class = OnlyIdContract)
-    contract = contract_class.new.call(params.to_unsafe_h)
+  def validate(contract_class = OnlyIdContract, **options)
+    contract = contract_class.new(**options).call(params.to_unsafe_h)
     raise Errors::UnprocessableEntity.new(contract.errors.to_h) if contract.failure?
 
     contract.to_h
