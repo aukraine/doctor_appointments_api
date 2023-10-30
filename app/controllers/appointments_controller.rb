@@ -1,4 +1,12 @@
 class AppointmentsController < ApplicationController
+  def index
+    authorize Appointment
+    params = validate(Appointments::IndexContract)
+    @collection = policy_scope(Appointment).upcoming_or_after(params[:started_from].presence || Time.current)
+
+    render json: AppointmentResource.new(collection).serialize, status: :ok
+  end
+
   def create
     authorize Appointment
     params = validate(Appointments::CreateContract)
