@@ -94,6 +94,9 @@ API for booking doctors appointments by patients
 
 **5. API Endpoints:**
 > - define the API endpoints based on the requirements.
+> - first point is that all endpoint is divided to two groups for providing ability to implement and manage:
+>   - booking and other CRUD operations for doctors and theirs availability slots (separated into `/doctor` path and module)
+>   - booking and other CRUD operations for patient and theirs appointments (separated into `/patient` path and module)
 > - create CRUD endpoints for ability to manage available slot in doctors schedule
 > - use `Alba` gem for serialization
 >   - potentially we can convert oll keys to `lowerCamelCase` adding one command in base serializer

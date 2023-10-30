@@ -1,5 +1,5 @@
 class TimeSlotsController < ApplicationController
-  before_action :set_resource, except: [:index, :create]
+  before_action :set_resource, only: [:update, :destroy]
 
   def index
     authorize TimeSlot
@@ -31,6 +31,13 @@ class TimeSlotsController < ApplicationController
     resource.destroy
 
     render json: { message: 'Record has been successfully deleted' }, status: :no_content
+  end
+
+  def show_open
+    authorize TimeSlot
+    @collection = policy_scope(TimeSlot).upcoming_or_after
+
+    render json: TimeSlotCollection.new(collection).serialize, status: :ok
   end
 
   private

@@ -40,6 +40,7 @@ class TimeSlot < ApplicationRecord
   validate :no_overlapping_time_slots
   validate :start_time_cannot_be_in_past
 
+  scope :open, -> { where(status: OPEN_STATUS) }
   scope :upcoming_or_after, ->(date = Time.current) { where('start_time >= ?', date) }
 
   private

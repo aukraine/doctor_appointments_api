@@ -5,7 +5,13 @@ class TimeSlotPolicy < ApplicationPolicy
       @scope = scope
     end
 
-    def resolve = user.time_slots
+    def resolve
+      if user.is_a?(Doctor)
+        user.time_slots
+      elsif user.is_a?(Patient)
+        scope.open
+      end
+    end
 
     private
 
@@ -16,6 +22,7 @@ class TimeSlotPolicy < ApplicationPolicy
   def create? = doctor?
   def update? = author?
   def destroy? = author?
+  def show_open? = user.is_a?(Patient)
 
   private
 
