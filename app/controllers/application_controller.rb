@@ -46,4 +46,18 @@ class ApplicationController < ActionController::API
   def render_error(error, status = nil)
     render json: { error: error.error_detail }, status: status.presence || error.status_code
   end
+
+  def validate(contract_class = OnlyIdContract, **options)
+    contract = contract_class.new(**options).call(params.to_unsafe_h)
+    raise Errors::UnprocessableEntity.new(contract.errors.to_h) if contract.failure?
+
+    contract.to_h
+  end
+
+  def handle_service(service_class, **params)
+    service = service_class.new(**params).call
+    raise service[:error] unless service[:success]
+
+    service[:value]
+  end
 end

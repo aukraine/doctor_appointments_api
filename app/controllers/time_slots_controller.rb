@@ -36,11 +36,4 @@ class TimeSlotsController < ApplicationController
   private
 
   def set_resource = @resource = TimeSlot.find(params[:id])
-
-  def validate(contract_class = OnlyIdContract, **options)
-    contract = contract_class.new(**options).call(params.to_unsafe_h)
-    raise Errors::UnprocessableEntity.new(contract.errors.to_h) if contract.failure?
-
-    contract.to_h
-  end
 end

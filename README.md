@@ -81,6 +81,9 @@ API for booking doctors appointments by patients
 >     - to provide better performance on index endpoint with ability to filter by doctor, desired date and time and statuses
 >   - provide own `status` field with couple potential item for using the future
 >   - duplicate `no_overlapping_time_slots` validation logic from `TimeSlot` model to ability avoiding overlaps in patients scheduling
+> - design and use Service Object to encapsulate and manage business logic in separate abstraction
+>   - service objects represent a single system action such as adding a record to the database or sending an email
+>   - service objects should contain no reference to anything related to HTTP, such as requests or parameters
 > - TODO: DB indexes
 
 **4. Create Data Storage:**
