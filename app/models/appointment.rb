@@ -33,7 +33,9 @@ class Appointment < ApplicationRecord
 
   enum status: STATUSES, _default: BOOKED_STATUS
 
+  validates :time_slot_id, uniqueness: { conditions: -> { where(status: BOOKED_STATUS) } }
   validate :no_overlapping_time_slots
+  validate :start_time_cannot_be_in_past
 
   private
 
