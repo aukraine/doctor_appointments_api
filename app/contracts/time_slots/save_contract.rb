@@ -5,11 +5,12 @@ module TimeSlots
     MIN_TIME_SLOT_SIZE = 15.minutes.to_i
 
     rule do
-      start_time = values[:start_time].presence || time_slot.start_time
-      end_time = values[:end_time].presence || time_slot.start_time
-      time_slot_size = end_time - start_time
+      next if time_slot.blank? && [:start_time, :end_time].any? { |key| values.keys.exclude?(key) }
 
-      if time_slot_size < MIN_TIME_SLOT_SIZE
+      start_time = values[:start_time].presence || time_slot.start_time
+      end_time = values[:end_time].presence || time_slot.end_time
+
+      if end_time - start_time < MIN_TIME_SLOT_SIZE
         key('start_time & end_time').failure('Size of time slot must be greater than 15 minutes')
       end
 

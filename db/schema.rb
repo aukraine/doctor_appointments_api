@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_233408) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_30_092516) do
   create_table "appointments", force: :cascade do |t|
     t.integer "start_time", null: false
     t.integer "end_time", null: false
@@ -21,8 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_233408) do
 
   create_table "time_slots", force: :cascade do |t|
     t.integer "doctor_id", null: false
-    t.integer "start_time", null: false
-    t.integer "end_time", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.integer "day_of_week", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

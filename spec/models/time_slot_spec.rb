@@ -4,8 +4,8 @@
 #
 #  id          :integer          not null, primary key
 #  day_of_week :integer          default("Monday"), not null
-#  end_time    :integer          not null
-#  start_time  :integer          not null
+#  end_time    :datetime         not null
+#  start_time  :datetime         not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  doctor_id   :integer          not null
