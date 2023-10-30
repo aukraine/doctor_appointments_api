@@ -1,6 +1,9 @@
 # Doctor Appointments Api
 API for booking doctors appointments by patients
 
+- run `db:seeds` to substitute DB with default data
+    > rails db:seeds
+
 [//]: # (This README would normally document whatever steps are necessary to get the)
 
 [//]: # (application up and running.)
