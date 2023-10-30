@@ -78,6 +78,7 @@ API for booking doctors appointments by patients
 > - create `Appointment` model
 >   - extend `TimeSlot` model with status field
 >   - duplicate `start_time`, `end_time` from each time slot to its related appointment
+>     - first of all to provide ability to handle and validate time overlaps in patient's schedule
 >     - to provide better performance on index endpoint with ability to filter by doctor, desired date and time and statuses
 >   - provide own `status` field with couple potential item for using the future
 >   - duplicate `no_overlapping_time_slots` validation logic from `TimeSlot` model to ability avoiding overlaps in patients scheduling
