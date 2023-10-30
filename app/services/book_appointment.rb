@@ -1,5 +1,5 @@
 class BookAppointment < BaseService
-  def initialize(time_slot_id:, description:, user:)
+  def initialize(time_slot_id:, description:, user:, **)
     @time_slot_id = time_slot_id
     @description = description
     @user = user

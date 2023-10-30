@@ -14,8 +14,10 @@ class AppointmentPolicy < ApplicationPolicy
 
   def index? = patient?
   def create? = patient?
+  def update? = author?
 
   private
 
+  def author? = record.patient.id == user.id
   def patient? = user.is_a?(Patient)
 end
