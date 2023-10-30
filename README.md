@@ -97,6 +97,7 @@ API for booking doctors appointments by patients
 > - create CRUD endpoints for ability to manage available slot in doctors schedule
 > - use `Alba` gem for serialization
 >   - potentially we can convert oll keys to `lowerCamelCase` adding one command in base serializer
+> - add ability to filter or doctors time slots or patients appointments that are started before some date (current time by default) on all `Index` endpoints
 
 **6. Implement the API:**
 - Write the code to create these API endpoints, using the chosen programming language and framework.
@@ -127,7 +128,8 @@ API for booking doctors appointments by patients
 > - TODO: try to deploy separatelly 
 
 **12. Future Improvements:**
-- Consider additional features or improvements, such as notifications, email confirmations, or an admin interface.
+> - consider additional features or improvements, such as notifications, email confirmations, or an admin interface.
+> - implement cron job to mark all TimeSlot's and Appointment `end_time of those is in the past`
 
 **13. Final Testing:**
 - Before launching the service, thoroughly test it to make sure it meets the minimal expectations and any additional features you've implemented.

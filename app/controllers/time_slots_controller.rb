@@ -3,7 +3,7 @@ class TimeSlotsController < ApplicationController
 
   def index
     authorize TimeSlot
-    @collection = policy_scope(TimeSlot)
+    @collection = policy_scope(TimeSlot).upcoming_or_after(params[:started_from].presence || Time.current)
 
     render json: TimeSlotResource.new(collection).serialize, status: :ok
   end
