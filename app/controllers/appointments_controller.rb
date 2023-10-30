@@ -27,6 +27,13 @@ class AppointmentsController < ApplicationController
     render json: serialized, status: :ok
   end
 
+  def destroy
+    authorize resource
+    handle_service(RemoveAppointment, appointment: resource)
+
+    render json: { message: 'Record has been successfully deleted' }, status: :no_content
+  end
+
   private
 
   def set_resource = @resource = Appointment.find(params[:id])

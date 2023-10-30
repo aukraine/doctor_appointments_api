@@ -15,6 +15,7 @@ class AppointmentPolicy < ApplicationPolicy
   def index? = patient?
   def create? = patient?
   def update? = author?
+  def destroy? = author?
 
   private
 
