@@ -6,6 +6,7 @@
 #  day_of_week :integer          default("Monday"), not null
 #  end_time    :datetime         not null
 #  start_time  :datetime         not null
+#  status      :string           default("open"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  doctor_id   :integer          not null
@@ -28,10 +29,13 @@ class TimeSlot < ApplicationRecord
     SAT = 'Saturday'.freeze => 5,
     SUN = 'Sunday'.freeze => 6
   }
+  STATUSES = { OPEN_STATUS = 'open'.freeze => 'open'.freeze, BOOKED_STATUS = 'booked'.freeze => 'booked'.freeze }
 
   belongs_to :doctor
+  has_one :appointment
 
-  enum day_of_week: DAYS_OF_WEEK, _default: DAYS_OF_WEEK[MON]
+  enum day_of_week: DAYS_OF_WEEK, _default: MON
+  enum status: STATUSES, _default: OPEN_STATUS
 
   validate :no_overlapping_time_slots
 

@@ -6,6 +6,7 @@
 #  day_of_week :integer          default("Monday"), not null
 #  end_time    :datetime         not null
 #  start_time  :datetime         not null
+#  status      :string           default("open"), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  doctor_id   :integer          not null

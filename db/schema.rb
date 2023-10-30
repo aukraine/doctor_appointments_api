@@ -12,11 +12,16 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_10_30_092516) do
   create_table "appointments", force: :cascade do |t|
-    t.integer "start_time", null: false
-    t.integer "end_time", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["start_time", "end_time"], name: "index_appointments_on_start_time_and_end_time"
+    t.integer "patient_id"
+    t.integer "time_slot_id"
+    t.string "description"
+    t.string "status", default: "booked", null: false
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["time_slot_id"], name: "index_appointments_on_time_slot_id"
   end
 
   create_table "time_slots", force: :cascade do |t|
@@ -26,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_092516) do
     t.integer "day_of_week", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "open", null: false
     t.index ["doctor_id"], name: "index_time_slots_on_doctor_id"
   end
 
@@ -39,5 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_30_092516) do
     t.string "password_digest"
   end
 
+  add_foreign_key "appointments", "time_slots"
+  add_foreign_key "appointments", "users", column: "patient_id"
   add_foreign_key "time_slots", "users", column: "doctor_id"
 end

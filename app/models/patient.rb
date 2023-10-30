@@ -12,4 +12,5 @@
 #  updated_at      :datetime         not null
 #
 class Patient < User
+  has_many :appointments, dependent: :destroy
 end

@@ -73,6 +73,12 @@ API for booking doctors appointments by patients
 >   - all validation logic (including not possibility to overlap visits) should be handled on client side and will be implemented on server side as well before storing 
 >   - implement overlap validation as model validation that will bw working on DB layer as well
 > - create `Appointment` model
+>   - extend `TimeSlot` model with status field
+>   - duplicate `start_time`, `end_time` from each time slot to its related appointment
+>     - to provide better performance on index endpoint with ability to filter by doctor, desired date and time and statuses
+>   - provide own `status` field with couple potential item for using the future
+>   - duplicate `no_overlapping_time_slots` validation logic from `TimeSlot` model to ability avoiding overlaps in patients scheduling
+> - TODO: DB indexes
 
 **4. Create Data Storage:**
 - Decide on the database system to store the data. Common choices include PostgreSQL, MySQL, SQLite, or NoSQL databases like MongoDB.
@@ -109,6 +115,7 @@ API for booking doctors appointments by patients
 
 **11. Deployment:**
 - Deploy the service to a server or a cloud platform of your choice, such as AWS, Heroku, or a Docker container.
+> - TODO: try to deploy separatelly 
 
 **12. Future Improvements:**
 - Consider additional features or improvements, such as notifications, email confirmations, or an admin interface.
