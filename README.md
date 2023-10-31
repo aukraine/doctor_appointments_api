@@ -17,7 +17,7 @@ API for booking doctors appointments by patients
 **5. run the server**
    > rails s
 
-**6. in addition, here is command how to run tests (not implemented)**
+**6. in addition, here is command how to run tests**
    > rspec spec
 
 **0. moreover, there is `JSON` file with collection in root directory for exporting into Postman app**
@@ -130,7 +130,7 @@ API for booking doctors appointments by patients
 >       - don't forget to send `/login` before to authenticate doctor user or patient one
 
 **8. Testing:**
-> - TODO: write unit tests to ensure the reliability of your code
+> - write couple model unit tests to ensure the reliability of your code
 > - TODO: write couple integration test using Swagger framework
 
 **9. Deployment:**
@@ -148,3 +148,4 @@ API for booking doctors appointments by patients
 >   - for example, we can create new index for faster receiving start & end times by slots IDs
 >   - however, it may increase index size in memory due to duplications data from those timestamps fields
 >   - `add_index :time_slots, [:start_time, :end_time]`
+> - write more unit tests to ensure the reliability of your code

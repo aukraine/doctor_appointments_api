@@ -14,6 +14,7 @@ gem 'pundit'
 gem 'dry-validation'
 gem 'alba'
 gem 'oj'
+gem 'rswag'
 
 group :development do
   gem 'annotate'
