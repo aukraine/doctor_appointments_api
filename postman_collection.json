@@ -1,16 +1,11 @@
 {
     "collection": {
         "info": {
-            "_postman_id": "534a116a-00d7-495d-94da-345022ba321e",
+            "_postman_id": "2e17afd5-0846-43c0-9213-5651a9507e80",
             "name": "Teladoc Assessment API",
             "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-            "fork": {
-                "label": "andrii.ukrainets's fork",
-                "createdAt": "2020-05-04T13:46:10.000Z",
-                "from": "6696321-c2e9cdb0-6bbf-46db-8ca5-3162b6422d9e"
-            },
-            "updatedAt": "2023-10-31T11:25:51.000Z",
-            "uid": "6696321-534a116a-00d7-495d-94da-345022ba321e"
+            "updatedAt": "2023-10-31T11:34:20.000Z",
+            "uid": "6696321-2e17afd5-0846-43c0-9213-5651a9507e80"
         },
         "item": [
             {
@@ -44,20 +39,13 @@
                                 }
                             }
                         ],
-                        "id": "bcd95f04-d33d-498f-b695-c055797bcaa6",
+                        "id": "10898c99-8c90-4ac3-8f31-4bc1db206a3f",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
                         "request": {
                             "method": "POST",
-                            "header": [
-                                {
-                                    "key": "Authorization",
-                                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.LRTK1dLv3_1EdvGWK6dOguwkbRZY5URNP9zDCe72bEs",
-                                    "type": "text",
-                                    "disabled": true
-                                }
-                            ],
+                            "header": [],
                             "body": {
                                 "mode": "raw",
                                 "raw": "{\n    \"email\": \"doctor@mail.com\",\n    \"password\": \"password\"\n}",
@@ -83,7 +71,7 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-bcd95f04-d33d-498f-b695-c055797bcaa6"
+                        "uid": "6696321-10898c99-8c90-4ac3-8f31-4bc1db206a3f"
                     },
                     {
                         "name": "time slots",
@@ -99,7 +87,7 @@
                                 }
                             }
                         ],
-                        "id": "f9ba57fd-5df8-437a-8aa2-7545193144b8",
+                        "id": "a37a8395-9453-4cba-b497-e04d3b0a6845",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -135,11 +123,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-f9ba57fd-5df8-437a-8aa2-7545193144b8"
+                        "uid": "6696321-a37a8395-9453-4cba-b497-e04d3b0a6845"
                     },
                     {
                         "name": "time slot",
-                        "id": "d4c6c91c-a5ff-48a4-b795-42a260c45576",
+                        "id": "1111b135-5256-4524-adb6-3ef8ad501cd2",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -178,11 +166,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-d4c6c91c-a5ff-48a4-b795-42a260c45576"
+                        "uid": "6696321-1111b135-5256-4524-adb6-3ef8ad501cd2"
                     },
                     {
                         "name": "time slot",
-                        "id": "b028fe75-6aba-43f5-ad54-2ee3ea199d94",
+                        "id": "1944f425-204f-495f-8b55-a7ca76bbc8d7",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -222,7 +210,7 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-b028fe75-6aba-43f5-ad54-2ee3ea199d94"
+                        "uid": "6696321-1944f425-204f-495f-8b55-a7ca76bbc8d7"
                     },
                     {
                         "name": "time slot",
@@ -238,7 +226,7 @@
                                 }
                             }
                         ],
-                        "id": "24e2ab5c-12be-43a5-a222-06a7607e3b18",
+                        "id": "9bd66d88-fc71-42b3-839d-2d0702bdf1d0",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -269,11 +257,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-24e2ab5c-12be-43a5-a222-06a7607e3b18"
+                        "uid": "6696321-9bd66d88-fc71-42b3-839d-2d0702bdf1d0"
                     }
                 ],
-                "id": "21bd3d61-785b-4967-a762-d93500689890",
-                "uid": "6696321-21bd3d61-785b-4967-a762-d93500689890"
+                "id": "414865c6-f55a-4561-a30b-f95065999e9b",
+                "uid": "6696321-414865c6-f55a-4561-a30b-f95065999e9b"
             },
             {
                 "name": "patient",
@@ -306,20 +294,13 @@
                                 }
                             }
                         ],
-                        "id": "e397f910-ba70-429c-b3a2-cb0b4a8b8aff",
+                        "id": "772473f3-80f9-49b2-9c1d-2f8f636306a2",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
                         "request": {
                             "method": "POST",
-                            "header": [
-                                {
-                                    "key": "Authorization",
-                                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.LRTK1dLv3_1EdvGWK6dOguwkbRZY5URNP9zDCe72bEs",
-                                    "type": "text",
-                                    "disabled": true
-                                }
-                            ],
+                            "header": [],
                             "body": {
                                 "mode": "raw",
                                 "raw": "{\n    \"email\": \"patient@mail.com\",\n    \"password\": \"password\"\n}",
@@ -345,11 +326,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-e397f910-ba70-429c-b3a2-cb0b4a8b8aff"
+                        "uid": "6696321-772473f3-80f9-49b2-9c1d-2f8f636306a2"
                     },
                     {
                         "name": "appointments",
-                        "id": "7f5e785f-fc18-4eba-a8ef-ece236274023",
+                        "id": "20a71d9b-a986-450a-a0b7-1a7eb3762108",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -385,11 +366,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-7f5e785f-fc18-4eba-a8ef-ece236274023"
+                        "uid": "6696321-20a71d9b-a986-450a-a0b7-1a7eb3762108"
                     },
                     {
                         "name": "appointment",
-                        "id": "bae827df-aa4a-4570-87be-3c8214f19f6e",
+                        "id": "7403d79c-6c5f-4f10-bd22-8baf3faa1a60",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -428,11 +409,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-bae827df-aa4a-4570-87be-3c8214f19f6e"
+                        "uid": "6696321-7403d79c-6c5f-4f10-bd22-8baf3faa1a60"
                     },
                     {
                         "name": "appointment",
-                        "id": "56ab5afe-436b-4f48-be00-4a00e3667dc9",
+                        "id": "63263b6c-1e1b-452b-b9fe-7bddbb5fca4f",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -472,11 +453,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-56ab5afe-436b-4f48-be00-4a00e3667dc9"
+                        "uid": "6696321-63263b6c-1e1b-452b-b9fe-7bddbb5fca4f"
                     },
                     {
                         "name": "appointment",
-                        "id": "65040a13-1374-4512-80cb-2338acd3106c",
+                        "id": "e32c5aa8-ad4d-421d-b706-0cb59ccf407a",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -507,7 +488,7 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-65040a13-1374-4512-80cb-2338acd3106c"
+                        "uid": "6696321-e32c5aa8-ad4d-421d-b706-0cb59ccf407a"
                     },
                     {
                         "name": "open time slots",
@@ -523,7 +504,7 @@
                                 }
                             }
                         ],
-                        "id": "369e12f4-4961-422c-8ab7-663aa90466d7",
+                        "id": "e86cd37c-f3d6-4751-85a2-4f80bfeb5b31",
                         "protocolProfileBehavior": {
                             "disableBodyPruning": true
                         },
@@ -566,11 +547,11 @@
                             }
                         },
                         "response": [],
-                        "uid": "6696321-369e12f4-4961-422c-8ab7-663aa90466d7"
+                        "uid": "6696321-e86cd37c-f3d6-4751-85a2-4f80bfeb5b31"
                     }
                 ],
-                "id": "ca4f64d3-b6c6-4bbd-83c9-32fb375724a6",
-                "uid": "6696321-ca4f64d3-b6c6-4bbd-83c9-32fb375724a6"
+                "id": "c5f653f1-5415-4150-b111-82809fd48ef1",
+                "uid": "6696321-c5f653f1-5415-4150-b111-82809fd48ef1"
             }
         ],
         "event": [
