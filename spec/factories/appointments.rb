@@ -22,7 +22,7 @@
 #
 FactoryBot.define do
   factory :appointment do
-    patient { create(:user, :patient) }
+    patient { create(:patient) }
     time_slot { create(:time_slot, :booked) }
     description { Faker::Lorem.sentence }
     booked

@@ -21,9 +21,9 @@
 #
 FactoryBot.define do
   factory :time_slot do
-    doctor { create(:user, :doctor) }
+    doctor { create(:doctor) }
     day_of_week { TimeSlot::MON }
-    start_time { Time.current }
+    start_time { Time.current + 1.hour }
     end_time { start_time + 20.minutes }
     open
 

@@ -13,11 +13,8 @@
 #
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:first_name) }
-    it { is_expected.to validate_presence_of(:last_name) }
-    it { is_expected.to validate_presence_of(:email) }
-    it { expect(FactoryBot.create(:doctor)).to validate_uniqueness_of(:email) }
+RSpec.describe Doctor, type: :model do
+  describe 'associations' do
+    it { is_expected.to have_many(:time_slots).dependent(:destroy) }
   end
 end

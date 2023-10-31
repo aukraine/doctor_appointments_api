@@ -22,5 +22,10 @@
 require 'rails_helper'
 
 RSpec.describe TimeSlot, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { FactoryBot.create(:time_slot) }
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:doctor) }
+    it { is_expected.to have_one(:appointment) }
+  end
 end
