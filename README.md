@@ -9,7 +9,7 @@ API for booking doctors appointments by patients
 3. migrate Data Base
    > rails db:migrate
 4. substitute DB with default data
-   > rails db:seeds
+   > rails db:seed --trace
 5. run the server
    > rails s
 
