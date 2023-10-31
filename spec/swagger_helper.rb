@@ -38,4 +38,31 @@ RSpec.configure do |config|
   # the key, this may want to be changed to avoid putting yaml in json files.
   # Defaults to json. Accepts ':json' and ':yaml'.
   config.swagger_format = :json
+
+  config.swagger_strict_schema_validation = true
+
+  config.before(:each, type: :request) do |example|
+    auth_header_parameter = { name: 'HTTP_AUTHORIZATION', in: :header, type: :string, required: true }
+    parameters = example.metadata[:example_group][:operation][:parameters]
+    extended_parameters = (parameters ? parameters : []) << auth_header_parameter
+
+    example.metadata[:example_group][:operation][:parameters] = extended_parameters
+  end
+
+  config.after(:each, type: :request) do |example|
+    next if response.nil? || example.metadata[:swagger_doc].nil?
+
+    json_content = response.header['Content-Type'].include?('application/json')
+    response_body = json_content ? JSON.parse(response.body) : response.body
+
+    example.metadata[:response][:content] = { 'application/json' => { example: response_body } }
+
+    request_example = example.metadata[:request_example]
+    if request_example && respond_to?(request_example)
+      parameters = example.metadata[:path_item][:parameters]
+      param = parameters.detect { |item| item[:name] == request_example }
+
+      param[:schema][:example] = public_send(request_example)
+    end
+  end
 end

@@ -7,10 +7,11 @@
   "paths": {
     "/login": {
       "post": {
-        "summary": "Authenticate user",
+        "summary": "authenticates user",
         "tags": [
           "Auth"
         ],
+        "description": "Authenticates current user",
         "parameters": [
 
         ],
@@ -19,7 +20,7 @@
             "description": "authenticated"
           },
           "401": {
-            "description": "invalid request"
+            "description": "unauthorized request"
           }
         },
         "requestBody": {
@@ -41,6 +42,401 @@
                 ]
               }
             }
+          }
+        }
+      }
+    },
+    "/patient/appointments": {
+      "get": {
+        "summary": "get appointments",
+        "tags": [
+          "Appointments"
+        ],
+        "description": "Returns list of patients appointments",
+        "parameters": [
+          {
+            "name": "started_from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": false,
+            "description": "A filter used to filter by started date and time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "appointments list"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          }
+        }
+      },
+      "post": {
+        "summary": "creates appointment",
+        "tags": [
+          "Appointments"
+        ],
+        "description": "Creates new appointment from provided data",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "appointment created"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          },
+          "500": {
+            "description": "unexpected error occurred"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "time_slot_id": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "time_slot_id"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/appointments/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "updates appointment",
+        "tags": [
+          "Appointments"
+        ],
+        "description": "Updates appointment by given ID",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "appointment updated"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          },
+          "500": {
+            "description": "unexpected error occurred"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "time_slot_id": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "deletes appointment",
+        "tags": [
+          "Appointments"
+        ],
+        "description": "Deletes appointment by given ID",
+        "responses": {
+          "200": {
+            "description": "appointment deleted"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "500": {
+            "description": "unexpected error occurred"
+          }
+        }
+      }
+    },
+    "/doctor/time_slots": {
+      "get": {
+        "summary": "get time slots",
+        "tags": [
+          "TimeSlots"
+        ],
+        "description": "Returns list of doctors time slots",
+        "parameters": [
+          {
+            "name": "started_from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": false,
+            "description": "A filter used to filter by started date and time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "time slots list"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          }
+        }
+      },
+      "post": {
+        "summary": "creates time slot",
+        "tags": [
+          "TimeSlots"
+        ],
+        "description": "Creates new time slot from provided data",
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "time slot created"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "422": {
+            "description": "unprocessable params"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "day_of_week": {
+                    "type": "integer"
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "day_of_week",
+                  "start_time",
+                  "end_time"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doctor/time_slots/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "updates time slot",
+        "tags": [
+          "TimeSlots"
+        ],
+        "description": "Updates time slot by given ID",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "time slot updated"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "day_of_week": {
+                    "type": "integer"
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "deletes time slot",
+        "tags": [
+          "TimeSlots"
+        ],
+        "description": "Deletes time slot by given ID",
+        "responses": {
+          "200": {
+            "description": "time slot deleted"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/patient/time_slots/open": {
+      "get": {
+        "summary": "get open time slots",
+        "tags": [
+          "TimeSlots"
+        ],
+        "description": "Returns list of all doctors open time slots",
+        "parameters": [
+          {
+            "name": "started_from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "required": false,
+            "description": "A filter used to filter by started date and time"
+          },
+          {
+            "name": "doctor_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false,
+            "description": "A filter used to filter by doctor ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "time slots list"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "forbidden action"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "unprocessable params"
           }
         }
       }
