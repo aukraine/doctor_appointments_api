@@ -35,7 +35,8 @@ class TimeSlotsController < ApplicationController
 
   def show_open
     authorize TimeSlot
-    @collection = policy_scope(TimeSlot).upcoming_or_after
+    params = validate(TimeSlots::ShowOpenContract)
+    @collection = OpenTimeSlotsQuery.(relation: policy_scope(TimeSlot), **params)
 
     render json: TimeSlotCollection.new(collection).serialize, status: :ok
   end

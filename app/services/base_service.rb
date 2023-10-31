@@ -1,6 +1,6 @@
 class BaseService
   def call
-    raise NotImplementedError
+    raise NotImplementedError, "#{self.class} doesn't implement #{__method__} method"
   end
 
   private
