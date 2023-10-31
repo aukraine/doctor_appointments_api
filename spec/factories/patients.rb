@@ -16,7 +16,7 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
-    password { 'password' }
-    type { 'Patient' }
+    password { Faker::Lorem.word }
+    type { Patient.name }
   end
 end

@@ -10,10 +10,10 @@ one_day = 1.day
 three_days = one_day * 3
 five_days = one_day * 5
 
-doctor_1 = FactoryBot.create(:doctor, email: 'doctor@mail.com')
+doctor_1 = FactoryBot.create(:doctor, email: 'doctor@mail.com', password: 'password')
 doctor_2 = FactoryBot.create(:doctor)
 
-patient_1 = FactoryBot.create(:patient, email: 'patient@mail.com')
+patient_1 = FactoryBot.create(:patient, email: 'patient@mail.com', password: 'password')
 patient_2 = FactoryBot.create(:patient)
 
 slot_1 = FactoryBot.create(:time_slot, :booked, doctor: doctor_1, start_time: current_time)
