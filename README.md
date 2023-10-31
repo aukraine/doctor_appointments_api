@@ -17,8 +17,11 @@ API for booking doctors appointments by patients
 **5. run the server**
    > rails s
 
-**6. in addition, here is command how to run tests**
+**6. in addition, here is command how to run tests (not implemented)**
    > rspec spec
+
+**0. moreover, there is `JSON` file with collection in root directory for exporting into Postman app**
+   > postman_collection.json
 
 
 ## Steps of implementation and developer notes
@@ -74,7 +77,7 @@ API for booking doctors appointments by patients
 >   - service objects should contain no reference to anything related to HTTP, such as requests or parameters
 > - implement `Query Object` on `show_open_slots` endpoint to handle complicated querying of records collection on index endpoint with extend filtering params and potentially ordering ones
 > - final DB schema with relations is next (see screenshot below)
-> - ![img.png](img.png)
+> - ![db_schema.png](db_schema.png)
 
 **4. API Endpoints:**
 > - define the API endpoints based on the requirements.
@@ -103,7 +106,28 @@ API for booking doctors appointments by patients
 **7. Documentation:**
 > - create this README.md file that explains how to run and use the service.
 > - added developer notes that were written during implementation
-> - TODO: include Postman collection into project for sharing with other team members
+> - include Postman collection into project for sharing with other team members
+>   - here is short description about all created endpoints
+>   - ![endpoints_list.png](endpoints_list.png)
+>   - first of all there is one simple `login` endpoint to authorize current user 
+>   - second there is group CRUD endpoints on `<server>/doctor/time_slots` path to provide doctors ability to manage theirs availability slots in schedule
+>     - `GET /doctor/time_slots` - returns all available slots created by current doctor (returns items with all statuses)
+>       - supports `started_from` parameter to filter records with `start_time` older than desired date and time
+>     - `POST /doctor/time_slots` - creates new slot using JSON data in payload
+>     - `PUT /doctor/time_slots/:id` - allow to update any record from doctor's created items scope
+>     - `DELETE /doctor/time_slots/:id` - removes record created by current doctor
+>   - next we have second group of CRUD endpoints, related to patient's actions on `<server>/patient/appointments` path
+>     - `GET /patient/appointments` - returns all appointments created by current patient
+>       - supports `started_from` parameter to filter records with `start_time` older than desired date and time
+>     - `POST /patient/appointments` - creates new appointment using JSON data in payload
+>     - `PUT /patient/appointments/:id` - allow to update any record from patient's created items scope
+>     - `DELETE /patient/appointments/:id` - removes record created by current patient
+>     - besides, there is one custom endpoint with `/time_slots` in path to get all open and not booked doctors availabilities
+>       - `GET /patient/time_slots/open` - return list of only open time slots created by different doctors
+>         - supports `started_from` parameter to filter records with `start_time` older than desired date and time
+>         - supports `doctor_id` parameter to filter items created by one doctor
+>     - you can export that JSON collection and try to send requests to any endpoint from Postman
+>       - don't forget to send `/login` before to authenticate doctor user or patient one
 
 **8. Testing:**
 > - TODO: write unit tests to ensure the reliability of your code

@@ -1,0 +1,605 @@
+{
+    "collection": {
+        "info": {
+            "_postman_id": "534a116a-00d7-495d-94da-345022ba321e",
+            "name": "Teladoc Assessment API",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "fork": {
+                "label": "andrii.ukrainets's fork",
+                "createdAt": "2020-05-04T13:46:10.000Z",
+                "from": "6696321-c2e9cdb0-6bbf-46db-8ca5-3162b6422d9e"
+            },
+            "updatedAt": "2023-10-31T11:25:51.000Z",
+            "uid": "6696321-534a116a-00d7-495d-94da-345022ba321e"
+        },
+        "item": [
+            {
+                "name": "doctor",
+                "item": [
+                    {
+                        "name": "login as doctor",
+                        "event": [
+                            {
+                                "listen": "prerequest",
+                                "script": {
+                                    "id": "8a20bc70-5c17-4c02-8c96-da8db77fd589",
+                                    "exec": [
+                                        "const echoPostRequest = {",
+                                        "    url: \"http://127.0.0.1:3000/login\",",
+                                        "    method: 'POST',",
+                                        "    header: { 'content-type': 'application/json' },",
+                                        "    body: {",
+                                        "        mode: 'raw',",
+                                        "        raw: {",
+                                        "            \"email\": \"doctor@mail.com\",",
+                                        "            \"password\": \"password\"",
+                                        "        }",
+                                        "    }",
+                                        "};",
+                                        "pm.sendRequest(echoPostRequest, function (err, response) {",
+                                        "    pm.globals.set('JWT', response.json().auth_token);",
+                                        "});"
+                                    ],
+                                    "type": "text/javascript"
+                                }
+                            }
+                        ],
+                        "id": "bcd95f04-d33d-498f-b695-c055797bcaa6",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.LRTK1dLv3_1EdvGWK6dOguwkbRZY5URNP9zDCe72bEs",
+                                    "type": "text",
+                                    "disabled": true
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"email\": \"doctor@mail.com\",\n    \"password\": \"password\"\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/login",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "login"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-bcd95f04-d33d-498f-b695-c055797bcaa6"
+                    },
+                    {
+                        "name": "time slots",
+                        "event": [
+                            {
+                                "listen": "prerequest",
+                                "script": {
+                                    "id": "b68664ee-9e9a-4e5e-9e14-57e41cabf2ea",
+                                    "exec": [
+                                        ""
+                                    ],
+                                    "type": "text/javascript"
+                                }
+                            }
+                        ],
+                        "id": "f9ba57fd-5df8-437a-8aa2-7545193144b8",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/doctor/time_slots?started_from=2023-10-30",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "doctor",
+                                    "time_slots"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "started_from",
+                                        "value": "2023-10-30"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-f9ba57fd-5df8-437a-8aa2-7545193144b8"
+                    },
+                    {
+                        "name": "time slot",
+                        "id": "d4c6c91c-a5ff-48a4-b795-42a260c45576",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"day_of_week\": \"3\",\n    \"start_time\": \"2027-01-22T13:43:19+01:00\",\n    \"end_time\": \"2027-01-22T14:43:19+01:00\"\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/doctor/time_slots",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "doctor",
+                                    "time_slots"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-d4c6c91c-a5ff-48a4-b795-42a260c45576"
+                    },
+                    {
+                        "name": "time slot",
+                        "id": "b028fe75-6aba-43f5-ad54-2ee3ea199d94",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "PUT",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"day_of_week\": 4,\n    \"start_time\": \"2026-01-21T12:43:19+01:00\",\n    \"end_time\": \"2026-12-23T12:43:19+01:00\"\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/doctor/time_slots/72",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "doctor",
+                                    "time_slots",
+                                    "72"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-b028fe75-6aba-43f5-ad54-2ee3ea199d94"
+                    },
+                    {
+                        "name": "time slot",
+                        "event": [
+                            {
+                                "listen": "prerequest",
+                                "script": {
+                                    "id": "538ea49b-31c0-4e6f-bfe5-b023d9159051",
+                                    "exec": [
+                                        ""
+                                    ],
+                                    "type": "text/javascript"
+                                }
+                            }
+                        ],
+                        "id": "24e2ab5c-12be-43a5-a222-06a7607e3b18",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "DELETE",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/doctor/time_slots/65",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "doctor",
+                                    "time_slots",
+                                    "65"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-24e2ab5c-12be-43a5-a222-06a7607e3b18"
+                    }
+                ],
+                "id": "21bd3d61-785b-4967-a762-d93500689890",
+                "uid": "6696321-21bd3d61-785b-4967-a762-d93500689890"
+            },
+            {
+                "name": "patient",
+                "item": [
+                    {
+                        "name": "login as patient",
+                        "event": [
+                            {
+                                "listen": "prerequest",
+                                "script": {
+                                    "id": "8a20bc70-5c17-4c02-8c96-da8db77fd589",
+                                    "exec": [
+                                        "const echoPostRequest = {",
+                                        "    url: \"http://127.0.0.1:3000/login\",",
+                                        "    method: 'POST',",
+                                        "    header: { 'content-type': 'application/json' },",
+                                        "    body: {",
+                                        "        mode: 'raw',",
+                                        "        raw: {",
+                                        "            \"email\": \"patient@mail.com\",",
+                                        "            \"password\": \"password\"",
+                                        "        }",
+                                        "    }",
+                                        "};",
+                                        "pm.sendRequest(echoPostRequest, function (err, response) {",
+                                        "    pm.globals.set('JWT', response.json().auth_token);",
+                                        "});"
+                                    ],
+                                    "type": "text/javascript"
+                                }
+                            }
+                        ],
+                        "id": "e397f910-ba70-429c-b3a2-cb0b4a8b8aff",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.LRTK1dLv3_1EdvGWK6dOguwkbRZY5URNP9zDCe72bEs",
+                                    "type": "text",
+                                    "disabled": true
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"email\": \"patient@mail.com\",\n    \"password\": \"password\"\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/login",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "login"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-e397f910-ba70-429c-b3a2-cb0b4a8b8aff"
+                    },
+                    {
+                        "name": "appointments",
+                        "id": "7f5e785f-fc18-4eba-a8ef-ece236274023",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/patient/appointments?started_from=2023-01-01",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "patient",
+                                    "appointments"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "started_from",
+                                        "value": "2023-01-01"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-7f5e785f-fc18-4eba-a8ef-ece236274023"
+                    },
+                    {
+                        "name": "appointment",
+                        "id": "bae827df-aa4a-4570-87be-3c8214f19f6e",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"time_slot_id\": 6,\n    \"description\": \"test description\"\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/patient/appointments",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "patient",
+                                    "appointments"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-bae827df-aa4a-4570-87be-3c8214f19f6e"
+                    },
+                    {
+                        "name": "appointment",
+                        "id": "56ab5afe-436b-4f48-be00-4a00e3667dc9",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "PUT",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"time_slot_id\": 6,\n    \"description\": \"test description 2\"\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/patient/appointments/6",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "patient",
+                                    "appointments",
+                                    "6"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-56ab5afe-436b-4f48-be00-4a00e3667dc9"
+                    },
+                    {
+                        "name": "appointment",
+                        "id": "65040a13-1374-4512-80cb-2338acd3106c",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "DELETE",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/patient/appointments/6",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "patient",
+                                    "appointments",
+                                    "6"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-65040a13-1374-4512-80cb-2338acd3106c"
+                    },
+                    {
+                        "name": "open time slots",
+                        "event": [
+                            {
+                                "listen": "prerequest",
+                                "script": {
+                                    "id": "b68664ee-9e9a-4e5e-9e14-57e41cabf2ea",
+                                    "exec": [
+                                        ""
+                                    ],
+                                    "type": "text/javascript"
+                                }
+                            }
+                        ],
+                        "id": "369e12f4-4961-422c-8ab7-663aa90466d7",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [
+                                {
+                                    "key": "Authorization",
+                                    "value": "Bearer {{JWT}}",
+                                    "type": "text"
+                                }
+                            ],
+                            "url": {
+                                "raw": "http://127.0.0.1:3000/patient/time_slots/open?started_from=2023-11-03&doctor_id=110",
+                                "protocol": "http",
+                                "host": [
+                                    "127",
+                                    "0",
+                                    "0",
+                                    "1"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "patient",
+                                    "time_slots",
+                                    "open"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "started_from",
+                                        "value": "2023-11-03",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "doctor_id",
+                                        "value": "110",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "6696321-369e12f4-4961-422c-8ab7-663aa90466d7"
+                    }
+                ],
+                "id": "ca4f64d3-b6c6-4bbd-83c9-32fb375724a6",
+                "uid": "6696321-ca4f64d3-b6c6-4bbd-83c9-32fb375724a6"
+            }
+        ],
+        "event": [
+            {
+                "listen": "prerequest",
+                "script": {
+                    "id": "c5467a1c-e399-4fc9-beb9-424a39413d04",
+                    "type": "text/javascript",
+                    "exec": [
+                        ""
+                    ]
+                }
+            },
+            {
+                "listen": "test",
+                "script": {
+                    "id": "8c362f6f-ffc0-4596-8144-3300f1f322cb",
+                    "type": "text/javascript",
+                    "exec": [
+                        ""
+                    ]
+                }
+            }
+        ],
+        "variable": [
+            {
+                "key": "id",
+                "value": "293"
+            }
+        ]
+    }
+}
