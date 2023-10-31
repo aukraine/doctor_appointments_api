@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
     authorize resource
     handle_service(RemoveAppointment, appointment: resource)
 
-    render json: { message: 'Record has been successfully deleted' }, status: :no_content
+    render json: { message: 'Record has been successfully deleted' }, status: :ok
   end
 
   private

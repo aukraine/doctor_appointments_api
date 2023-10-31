@@ -104,6 +104,8 @@ RSpec.describe 'Appointment API', type: :request, swagger_doc: 'v1/swagger.json'
   path '/patient/appointments/{id}' do
     parameter name: :id, in: :path, schema: { type: :integer }, required: true
 
+    let(:id) { FactoryBot.create(:appointment, patient: current_user).id }
+
     put 'updates appointment' do
       tags 'Appointments'
       description 'Updates appointment by given ID'
@@ -118,7 +120,6 @@ RSpec.describe 'Appointment API', type: :request, swagger_doc: 'v1/swagger.json'
         required: []
       }
 
-      let(:id) { FactoryBot.create(:appointment, patient: current_user).id }
       let(:payload) { { time_slot_id: FactoryBot.create(:time_slot).id, description: 'description' } }
 
       response '200', 'appointment updated' do
@@ -159,12 +160,10 @@ RSpec.describe 'Appointment API', type: :request, swagger_doc: 'v1/swagger.json'
     delete 'deletes appointment' do
       tags 'Appointments'
       description 'Deletes appointment by given ID'
-      consumes 'application/json'
-      produces 'application/json'
 
       let(:id) { FactoryBot.create(:appointment, patient: current_user).id }
 
-      response '204', 'appointment updated' do
+      response '200', 'appointment deleted' do
         run_test!
       end
 

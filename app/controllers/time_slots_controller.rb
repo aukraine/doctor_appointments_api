@@ -3,6 +3,7 @@ class TimeSlotsController < ApplicationController
 
   def index
     authorize TimeSlot
+    params = validate(TimeSlots::IndexContract)
     @collection = policy_scope(TimeSlot).upcoming_or_after(params[:started_from].presence || Time.current)
 
     render json: TimeSlotResource.new(collection).serialize, status: :ok
@@ -30,7 +31,7 @@ class TimeSlotsController < ApplicationController
     authorize resource
     resource.destroy
 
-    render json: { message: 'Record has been successfully deleted' }, status: :no_content
+    render json: { message: 'Record has been successfully deleted' }, status: :ok
   end
 
   def show_open
