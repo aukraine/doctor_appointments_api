@@ -19,7 +19,7 @@ class RemoveAppointment < BaseService
   attr_reader :appointment
 
   def update_time_slot
-    appointment.time_slot.update!(status: TimeSlot::OPEN_STATUS)
+    appointment.time_slot.update!(status: TimeSlot::OPEN_STATUS, skip_in_past_validation: true)
   end
 
   def remove_appointment

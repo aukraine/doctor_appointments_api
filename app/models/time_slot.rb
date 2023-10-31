@@ -20,6 +20,8 @@
 #  doctor_id  (doctor_id => users.id)
 #
 class TimeSlot < ApplicationRecord
+  attr_accessor :skip_in_past_validation
+
   DAYS_OF_WEEK = {
     MON = 'Monday'.freeze => 0,
     TUE = 'Tuesday'.freeze => 1,
@@ -38,7 +40,7 @@ class TimeSlot < ApplicationRecord
   enum status: STATUSES, _default: OPEN_STATUS
 
   validate :no_overlapping_time_slots
-  validate :start_time_cannot_be_in_past
+  validate :start_time_cannot_be_in_past, if: -> { skip_in_past_validation != true }
 
   scope :open, -> { where(status: OPEN_STATUS) }
   scope :upcoming_or_after, ->(date = Time.current) { where('start_time >= ?', date) }

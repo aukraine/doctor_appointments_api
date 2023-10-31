@@ -149,3 +149,5 @@ API for booking doctors appointments by patients
 >   - however, it may increase index size in memory due to duplications data from those timestamps fields
 >   - `add_index :time_slots, [:start_time, :end_time]`
 > - write more unit tests to ensure the reliability of your code
+> - pay attention and implement good validation how to work with models that have start and end times in the past
+>   - for instance if user can remove appointment that is started they must be allowed to update status of its time slot, etc

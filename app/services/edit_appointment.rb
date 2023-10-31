@@ -38,7 +38,7 @@ class EditAppointment < BaseService
   end
 
   def update_old_time_slot
-    appointment.time_slot.update!(status: TimeSlot::OPEN_STATUS)
+    appointment.time_slot.update!(status: TimeSlot::OPEN_STATUS, skip_in_past_validation: true)
   end
 
   def update_appointment
