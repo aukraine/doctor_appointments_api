@@ -21,7 +21,7 @@ API for booking doctors appointments by patients
    > rspec spec
 
 **0. moreover, there is `JSON` file with collection in root directory for exporting into Postman app**
-   > cp postman_collection.json /<export_directory>
+   > cp docs/postman_collection.json /<export_directory>
 
 
 ## Steps of implementation and developer notes
@@ -77,7 +77,7 @@ API for booking doctors appointments by patients
 >   - service objects should contain no reference to anything related to HTTP, such as requests or parameters
 > - implement `Query Object` on `show_open_slots` endpoint to handle complicated querying of records collection on index endpoint with extend filtering params and potentially ordering ones
 > - final DB schema with relations is next (see screenshot below)
-> - ![db_schema.png](db_schema.png)
+> - ![docs/db_schema.png](docs/db_schema.png)
 
 **4. API Endpoints:**
 > - define the API endpoints based on the requirements.
@@ -108,7 +108,7 @@ API for booking doctors appointments by patients
 > - added developer notes that were written during implementation
 > - include Postman collection into project for sharing with other team members
 >   - here is short description about all created endpoints
->   - ![endpoints_list.png](endpoints_list.png)
+>   - ![docs/endpoints_list.png](docs/endpoints_list.png)
 >   - first of all there is one simple `login` endpoint to authorize current user 
 >   - second there is group CRUD endpoints on `<server>/doctor/time_slots` path to provide doctors ability to manage theirs availability slots in schedule
 >     - `GET /doctor/time_slots` - returns all available slots created by current doctor (returns items with all statuses)
