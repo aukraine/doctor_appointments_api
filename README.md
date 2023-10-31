@@ -2,60 +2,33 @@
 API for booking doctors appointments by patients
 
 ## How run project locally
-1. after cloning repo install all dependencies
+**1. after cloning repo install all dependencies**
    > bundler install
-2. copy development secret key (it should be shared via some secret manager tool instead)
+
+**2. copy development secret key (it should be shared via some secret manager tool instead)**
    > cp config/master.key.template config/master.key
-3. migrate Data Base
+
+**3. migrate Data Base**
    > rails db:migrate
-4. substitute DB with default data
+
+**4. substitute DB with default data**
    > rails db:seed --trace
-5. run the server
+
+**5. run the server
    > rails s
 
-[//]: # (This README would normally document whatever steps are necessary to get the)
-
-[//]: # (application up and running.)
-
-[//]: # ()
-[//]: # (Things you may want to cover:)
-
-[//]: # ()
-[//]: # (* Ruby version)
-
-[//]: # ()
-[//]: # (* System dependencies)
-
-[//]: # ()
-[//]: # (* Configuration)
-
-[//]: # ()
-[//]: # (* Database creation)
-
-[//]: # ()
-[//]: # (* Database initialization)
-
-[//]: # ()
-[//]: # (* How to run the test suite)
-
-[//]: # ()
-[//]: # (* Services &#40;job queues, cache servers, search engines, etc.&#41;)
-
-[//]: # ()
-[//]: # (* Deployment instructions)
-
-[//]: # ()
-[//]: # (* ...)
+**6. in addition, here is command how to run tests**
+   > rspec spec
 
 
-
-[//]: # (**1. Understand the Requirements:**)
-[//]: # (- Carefully read and understand the problem definition.)
-[//]: # (- Identify the core functionalities the API should provide: managing doctor availabilities, patient booking/editing appointments, and viewing availability.)
+## Steps and developer notes
+**1. Understand the Requirements:**
+> - carefully read and understand the problem definition.
+> - identify the core functionalities the API should provide: managing doctor availabilities, patient booking/editing appointments, and viewing availability.
 
 **2. Select the Technology Stack:**
-- Choose the programming language and framework you are most comfortable with. Some common choices include Python (with Django or Flask), Node.js (with Express), Ruby (with Ruby on Rails), or any other language/framework you prefer.
-> - RoR, SQLite
+> - choose the programming language and framework.
+>   - RoR, SQLite, JWT, Pundit, DRY-validation, Alba, RSpec, FactoryBot
 
 **3. Design Data Models:**
 > - determine the data models required for this system.
@@ -99,11 +72,9 @@ API for booking doctors appointments by patients
 > - implement `Query Object` on `show_open_slots` endpoint to handle complicated querying of records collection on index endpoint with extend filtering params and potentially ordering ones
 > - TODO: DB indexes
 
-**4. Create Data Storage:**
-- Decide on the database system to store the data. Common choices include PostgreSQL, MySQL, SQLite, or NoSQL databases like MongoDB.
-
-**5. API Endpoints:**
+**4. API Endpoints:**
 > - define the API endpoints based on the requirements.
+> - ensure that the API follows RESTful principles (HTTP methods like GET, POST, PUT, DELETE, status codes, etc.).
 > - first point is that all endpoint is divided to two groups for providing ability to implement and manage:
 >   - booking and other CRUD operations for doctors and theirs availability slots (separated into `/doctor` path and module)
 >   - booking and other CRUD operations for patient and theirs appointments (separated into `/patient` path and module)
@@ -112,48 +83,34 @@ API for booking doctors appointments by patients
 >   - potentially we can convert oll keys to `lowerCamelCase` adding one command in base serializer
 > - add ability to filter or doctors time slots or patients appointments that are started before some date (current time by default) on all `Index` endpoints
 
-**6. Implement the API:**
-- Write the code to create these API endpoints, using the chosen programming language and framework.
-- Ensure that the API follows RESTful principles (HTTP methods like GET, POST, PUT, DELETE, status codes, etc.).
-
-**7. Authentication and Authorization:**
+**5. Authentication and Authorization:**
 > - Implement user authentication to ensure only authorized users can book or modify appointments.
 > - use `JWT` gem to authentication users
 > - create simple `login` endpoint to authenticate current user by JWT
 > - use `Pundit` gem to authorise users permissions
 
-**8. Validation and Error Handling:**
+**6. Validation and Error Handling:**
 > - add validation for incoming data to prevent invalid bookings or data corruption.
 >   - use `Dry-validation` gem
 >     - add addition DRY rules for cases when slots time data is not valid
 > - implement robust error handling to provide meaningful error messages through whole API.
 >   - we are able not pass error message to response body if we don't want to show any internal errors in clients
 
-**9. Documentation:**
-- Create a README.md file that explains how to run and use the service.
-- Include clear and concise instructions on how to set up the environment, run the service, and interact with the API.
+**7. Documentation:**
+> - create this README.md file that explains how to run and use the service.
+> - added developer notes that were written during implementation
+> - TODO: include Postman collection into project for sharing with other team members
 
-**10. Testing:**
-- Write unit tests to ensure the reliability of your code. Tools like pytest, Mocha, or Jasmine can be helpful for testing.
+**8. Testing:**
+> - TODO: write unit tests to ensure the reliability of your code
+> - TODO: write couple integration test using Swagger framework
 
-**11. Deployment:**
-- Deploy the service to a server or a cloud platform of your choice, such as AWS, Heroku, or a Docker container.
-> - TODO: try to deploy separatelly 
+**9. Deployment:**
+> - now API is setup to run directly in local environment only
+> - TODO: use Docker
 
-**12. Future Improvements:**
+**10. Future Improvements:**
 > - consider additional features or improvements, such as notifications, email confirmations, or an admin interface.
 > - implement cron job to mark all TimeSlot's and Appointment `end_time of those is in the past`
-
-**13. Final Testing:**
-- Before launching the service, thoroughly test it to make sure it meets the minimal expectations and any additional features you've implemented.
-
-**14. Security Considerations:**
-- Pay attention to security best practices, especially when handling patient information. This includes data encryption, secure storage, and compliance with data protection regulations.
-
-**15. Performance Optimization:**
-- Ensure the service can handle a reasonable amount of traffic and optimize performance as needed.
-
-**16. Scale:**
-- Think about how the service can be scaled in the future to accommodate a growing number of users and doctors.
-
-Remember that the exact implementation details will depend on the programming language and framework you choose. Regularly test your API throughout development and seek feedback from others to ensure it meets the clinic's requirements. Good luck with your assessment!
+> - write unit and swagger tests
+> - configure Docker
