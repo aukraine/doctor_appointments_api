@@ -21,7 +21,7 @@ API for booking doctors appointments by patients
    > rspec spec
 
 **0. moreover, there is `JSON` file with collection in root directory for exporting into Postman app**
-   > postman_collection.json
+   > cp postman_collection.json /<export_directory>
 
 
 ## Steps of implementation and developer notes
