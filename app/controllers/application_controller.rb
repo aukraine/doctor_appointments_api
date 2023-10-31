@@ -30,7 +30,7 @@ class ApplicationController < ActionController::API
     if header.present? && (decoded = JsonWebToken.decode(header))
       @current_user = User.find(decoded[:user_id])
     else
-      render_error(Errors::Unauthorized.new)
+      render_error(Errors::Unauthorized.new('Unauthorized request. Authentication is required.'))
     end
   end
 

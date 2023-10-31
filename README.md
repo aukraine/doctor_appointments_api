@@ -1,8 +1,17 @@
 # Doctor Appointments Api
 API for booking doctors appointments by patients
 
-- run `db:seeds` to substitute DB with default data
-    > rails db:seeds
+## How run project locally
+1. after cloning repo install all dependencies
+   > bundler install
+2. copy development secret key (it should be shared via some secret manager tool instead)
+   > cp config/master.key.template config/master.key
+3. migrate Data Base
+   > rails db:migrate
+4. substitute DB with default data
+   > rails db:seeds
+5. run the server
+   > rails s
 
 [//]: # (This README would normally document whatever steps are necessary to get the)
 
