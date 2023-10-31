@@ -60,4 +60,8 @@ class TimeSlot < ApplicationRecord
 
     errors.add(:base, 'Time slots cannot overlap') if overlapped
   end
+
+  def start_time_cannot_be_in_past
+    errors.add(:base, 'Start time can not be in the past') if start_time < Time.current
+  end
 end

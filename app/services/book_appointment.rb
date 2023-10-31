@@ -31,12 +31,6 @@ class BookAppointment < BaseService
   end
 
   def create_appointment
-    @appointment = Appointment.create!(
-      patient: user,
-      description: description,
-      time_slot: time_slot,
-      start_time: time_slot.start_time,
-      end_time: time_slot.end_time
-    )
+    @appointment = Appointment.create!(patient: user, description: description, time_slot: time_slot)
   end
 end

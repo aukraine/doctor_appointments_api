@@ -4,8 +4,6 @@
 #
 #  id           :integer          not null, primary key
 #  description  :string
-#  end_time     :datetime         not null
-#  start_time   :datetime         not null
 #  status       :string           default("booked"), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -37,7 +35,7 @@ class Appointment < ApplicationRecord
   validate :no_overlapping_time_slots
   validate :start_time_cannot_be_in_past
 
-  scope :upcoming_or_after, ->(date = Time.current) { where('start_time >= ?', date) }
+  scope :upcoming_or_after, ->(date = Time.current) { joins(:time_slot).where('time_slots.start_time >= ?', date) }
 
   private
 
@@ -46,12 +44,17 @@ class Appointment < ApplicationRecord
       Appointment
         .where.not(id: id)
         .where(patient_id: patient_id)
+        .joins(:time_slot)
         .where(
-          '(start_time < ? AND end_time > ?) OR (start_time < ? AND end_time > ?) OR (start_time >= ? AND end_time <= ?)',
-          end_time, start_time, start_time, end_time, start_time, end_time
+          '(time_slots.start_time < ? AND time_slots.end_time > ?) OR (time_slots.start_time < ? AND time_slots.end_time > ?) OR (time_slots.start_time >= ? AND time_slots.end_time <= ?)',
+          time_slot.end_time, time_slot.start_time, time_slot.start_time, time_slot.end_time, time_slot.start_time, time_slot.end_time
         )
         .exists?
 
     errors.add(:base, 'Time slots cannot overlap') if overlapped
+  end
+
+  def start_time_cannot_be_in_past
+    errors.add(:base, 'Start time can not be in the past') if time_slot.start_time < Time.current
   end
 end

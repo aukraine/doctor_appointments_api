@@ -14,14 +14,14 @@ API for booking doctors appointments by patients
 **4. substitute DB with default data**
    > rails db:seed --trace
 
-**5. run the server
+**5. run the server**
    > rails s
 
 **6. in addition, here is command how to run tests**
    > rspec spec
 
 
-## Steps and developer notes
+## Steps of implementation and developer notes
 **1. Understand the Requirements:**
 > - carefully read and understand the problem definition.
 > - identify the core functionalities the API should provide: managing doctor availabilities, patient booking/editing appointments, and viewing availability.
@@ -65,12 +65,16 @@ API for booking doctors appointments by patients
 >   - provide own `status` field with couple potential item for using the future
 >   - duplicate `no_overlapping_time_slots` validation logic from `TimeSlot` model to ability avoiding overlaps in patients scheduling
 >   - implement validation to forbid booking appointments on one doctors time slot for different patients
->   - implement validation to avoid booking appointments to time slots from past
+>   - implement validation to avoid booking appointments to time slots from past 
+>   - after some discovering I have decided to remove duplicated `start_time` and `end_time` fields in `Appointment` model
+>     - at least it reduces stored duplicated data in DB 
+>     - change all validation queries in model using `joins` to get time values from related model and handle its values 
 > - design and use `Service Object` to encapsulate and manage business logic in separate abstraction
 >   - service objects represent a single system action such as adding a record to the database or sending an email
 >   - service objects should contain no reference to anything related to HTTP, such as requests or parameters
 > - implement `Query Object` on `show_open_slots` endpoint to handle complicated querying of records collection on index endpoint with extend filtering params and potentially ordering ones
-> - TODO: DB indexes
+> - final DB schema with relations is next (see screenshot below)
+> - ![img.png](img.png)
 
 **4. API Endpoints:**
 > - define the API endpoints based on the requirements.
@@ -112,5 +116,11 @@ API for booking doctors appointments by patients
 **10. Future Improvements:**
 > - consider additional features or improvements, such as notifications, email confirmations, or an admin interface.
 > - implement cron job to mark all TimeSlot's and Appointment `end_time of those is in the past`
+> - implement some blocker on business logic layer
+>   - for instance, no ability to remove time slot by doctor if there is related booked appointment from patient
 > - write unit and swagger tests
 > - configure Docker
+> - improve DB indexes
+>   - for example, we can create new index for faster receiving start & end times by slots IDs
+>   - however, it may increase index size in memory due to duplications data from those timestamps fields
+>   - `add_index :time_slots, [:start_time, :end_time]`

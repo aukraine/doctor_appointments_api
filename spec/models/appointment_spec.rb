@@ -4,8 +4,6 @@
 #
 #  id           :integer          not null, primary key
 #  description  :string
-#  end_time     :datetime         not null
-#  start_time   :datetime         not null
 #  status       :string           default("booked"), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
