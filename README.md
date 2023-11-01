@@ -1,7 +1,8 @@
-# Doctor Appointments Api
+# Doctor Appointments API
 API for booking doctors appointments by patients
 
-## How run project locally
+## How to run project locally
+
 **1. after cloning repo install all dependencies**
    > bundler install
 
@@ -23,15 +24,24 @@ API for booking doctors appointments by patients
 **0. moreover, there is `JSON` file with collection in root directory for exporting into Postman app**
    > cp docs/postman_collection.json /<export_directory>
 
+### How to run project in Docker container
 
-## Steps of implementation and developer notes
+**1. build image**
+   > docker build -t doctor-appointment-api .
+
+**2. run image**
+   > docker run -p 3000:3000 doctor-appointment-api
+
+
+# Steps of implementation and developer notes
+
 **1. Understand the Requirements:**
 > - carefully read and understand the problem definition.
 > - identify the core functionalities the API should provide: managing doctor availabilities, patient booking/editing appointments, and viewing availability.
 
 **2. Select the Technology Stack:**
 > - choose the programming language and framework.
->   - RoR, SQLite, JWT, Pundit, DRY-validation, Alba, RSpec, FactoryBot
+>   - RoR, SQLite, Docker, JWT, Pundit, DRY-validation, Alba, Swagger, RSpec, FactoryBot
 
 **3. Design Data Models:**
 > - determine the data models required for this system.
@@ -137,7 +147,7 @@ API for booking doctors appointments by patients
 
 **9. Deployment:**
 > - now API is setup to run directly in local environment only
-> - TODO: use Docker
+> - implement simple Docker file that can build and run in one container the app with DB
 
 **10. Future Improvements:**
 > - consider additional features or improvements, such as notifications, email confirmations, or an admin interface.
