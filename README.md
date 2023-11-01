@@ -144,6 +144,8 @@ API for booking doctors appointments by patients
 > - cover all endpoint with own integration test using Swagger framework and generate very useful and helpful documentation
 >   - ![swagger.png](docs%2Fswagger.png)
 >   - visit `<server>/api-docs` you can see automatically generated API documentation like on screenshot above
+> - use `simplecov` gem to check amount of covered code with tests
+>   - ![test_coverage.png](docs%2Ftest_coverage.png)
 
 **9. Deployment:**
 > - now API is setup to run directly in local environment only
