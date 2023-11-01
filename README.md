@@ -99,6 +99,7 @@ API for booking doctors appointments by patients
 > - use `Alba` gem for serialization
 >   - potentially we can convert oll keys to `lowerCamelCase` adding one command in base serializer
 > - add ability to filter or doctors time slots or patients appointments that are started before some date (current time by default) on all `Index` endpoints
+> - it is first version of `V1` API, so we have to consider add `/v1` into path and move controllers into `V1` module according to the best practices of API design and implementation
 
 **5. Authentication and Authorization:**
 > - Implement user authentication to ensure only authorized users can book or modify appointments.
